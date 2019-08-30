@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Deploy
+metadata:
+  name: test-healthz
+spec:
+  template:
+    metadata:
+      name: test-healthz
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: gcr-json-key
+      containers:
+      - name:  test-healthz
+        image: gcr.io/nimble-radio-231516/artaxmax/test-healthz:v349
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh"]
+        args:
+        - "-c"
+        - "node app.js"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-healthz
+spec:
+  selector:
+    app: test-healthz
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer

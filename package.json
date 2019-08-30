@@ -1,0 +1,22 @@
+{
+  "name": "test-healthz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/artaxmax/test-healthz.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/artaxmax/test-healthz/issues"
+  },
+  "homepage": "https://gitlab.com/artaxmax/test-healthz#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
