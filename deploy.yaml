@@ -1,24 +1,22 @@
-apiVersion: batch/v1
-kind: Deploy
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
   name: test-healthz
+  namespace: default
 spec:
+  replicas: 1
   template:
     metadata:
-      name: test-healthz
+      labels:
+        app: test-healthz
     spec:
-      restartPolicy: Never
-      imagePullSecrets:
-        - name: gcr-json-key
       containers:
-      - name:  test-healthz
-        image: gcr.io/nimble-radio-231516/artaxmax/test-healthz:v349
-        imagePullPolicy: IfNotPresent
+      - name: test-healthz
+        image: artaxmax/test-healthz:latest
         command: ["/bin/sh"]
         args:
         - "-c"
         - "node app.js"
-
 ---
 apiVersion: v1
 kind: Service
